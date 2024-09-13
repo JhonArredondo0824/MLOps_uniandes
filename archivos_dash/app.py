@@ -7,8 +7,6 @@ import numpy as np
 import pandas as pd
 import datetime as dt
 
-
-
 app = dash.Dash(
     __name__,
     meta_tags=[{"name": "viewport", "content": "width=device-width, initial-scale=1"}],
@@ -20,12 +18,22 @@ app.config.suppress_callback_exceptions = True
 
 
 # Load data from csv
-def load_data():
-    # To do: Completar la función 
+def load_data(base_csv):
+
+    # Cargar el archivo CSV en un DataFrame
+    df = pd.read_csv(base_csv)
     
+    # Convertir la columna de fecha a formato datetime
+    df['time'] = pd.to_datetime(df['time'])
+    
+    # Establecer la columna de fecha como el índice del DataFrame
+    df.set_index('time', inplace=True)
+    
+    # Retornar el DataFrame
+    return df
 
 # Cargar datos
-data = load_data()
+data = load_data(r'C:\Users\jearredo\OneDrive - Grupo Bancolombia\Bancolombia\3. RIESGOS 2022\Uniandes\DevOpv - MLOps\archivos_dash/datos_energia.csv')
 
 # Graficar serie
 def plot_series(data, initial_date, proy):
