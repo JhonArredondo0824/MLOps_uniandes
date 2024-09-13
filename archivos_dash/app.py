@@ -33,7 +33,7 @@ def load_data(base_csv):
     return df
 
 # Cargar datos
-data = load_data(r'C:\Users\jearredo\OneDrive - Grupo Bancolombia\Bancolombia\3. RIESGOS 2022\Uniandes\DevOpv - MLOps\archivos_dash/datos_energia.csv')
+data = load_data('datos_energia.csv')
 
 # Graficar serie
 def plot_series(data, initial_date, proy):
